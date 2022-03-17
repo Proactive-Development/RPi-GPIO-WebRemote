@@ -42,25 +42,33 @@
             border-radius: 10px;
             width: 50%;
         }
+        .banner {
+            position: fixed;
+            bottom: 0;
+        }
+        .icons8 {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: 10px;
+        }
     </style>
     <style>
-        @keyframes spinning {
+        /* @keyframes spinning {
           from { transform: rotate(0deg) }
           to { transform: rotate(360deg) }
+        } */
+        @keyframes spinning {
+          0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
         }
         .spin {
           animation-name: spinning;
-          animation-duration: 3s;
+          animation-duration: 1s;
           animation-iteration-count: 1;
           /* linear | ease | ease-in | ease-out | ease-in-out */
-          animation-timing-function: 0% {
-            transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-                }
-                cubic-bezier(0.51,-0.02, 0, 1.53);
-                    }
+          animation-timing-function: ease-in-out;
+        }
       </style>
     <body>
         <div>
@@ -98,6 +106,8 @@
                     <p>If you notice a bug in RPi-GPIO WebRemote you can report it in out github repository.</p>
                 </div>
             </div>
+        <a href="https://github.com/Proactive-Development"><img src="https://raw.githubusercontent.com/Proactive-Development/RPi-GPIO-WebRemote/main/Banner.png" class="banner" width="300px"></a>
+        <p class="icons8">Icons by <a href="https://icons8.com">Icons8</a></p>
         <script defer async>
             function set_high(){
                 var xhttp = new XMLHttpRequest();
@@ -155,24 +165,10 @@
             async function start_animation(){
                 await sleep(300)
                 opacity_to_100("animation_icon")
-                await sleep(300)
+                await sleep(1200)
                 opacity_to_0("animation_icon")
                 await sleep(500)
                 opacity_to_100("main")
-                document.getElementById("animation_icon").style.display = "none"
-                document.getElementById("main").style.display = "block"
-            }
-
-            async function start_animation_idk(){
-                await sleep(300)
-                opacity_to_100("animation_icon")
-                //await sleep(1000)
-                //opacity_to_0("animation_icon")
-
-                await sleep(1000)
-                spin_animation()
-                await sleep(500)
-                opacity_to_0("animation_icon")
                 document.getElementById("animation_icon").style.display = "none"
                 document.getElementById("main").style.display = "block"
             }
