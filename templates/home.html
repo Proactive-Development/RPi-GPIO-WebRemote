@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://kit.fontawesome.com/4c8662ad0a.js" crossorigin="anonymous"></script>
+    </head>
+    <style>
+        body{
+            margin: 0px;
+        }
+        #main{
+            display: none;
+            opacity: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #main_flex_box{
+            display: flex;
+            justify-content: center;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        /* @font-face {
+            font-family: FontAwesome;
+             src: url(fontfile-webfont.eot?v=4.0.3); 
+             src: url(fontfile-webfont.eot?#iefix&v=4.0.3) format('embedded-opentype') 
+             ,url(fontfile-webfont.woff?v=4.0.3) format('woff') 
+             ,url(fontfile-webfont.ttf?v=4.0.3) format('truetype') 
+             ,url(fontfile-webfont.svg?v=4.0.3#fontawesomeregular) format('svg'); 
+             font-weight: 400; 
+             font-style: normal;
+        } */
+        .card{
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 0px 10px 0px #b9b9b9;
+            padding: 5px;
+            margin: 20px;
+            border-radius: 10px;
+            width: 50%;
+        }
+    </style>
+    <style>
+        @keyframes spinning {
+          from { transform: rotate(0deg) }
+          to { transform: rotate(360deg) }
+        }
+        .spin {
+          animation-name: spinning;
+          animation-duration: 3s;
+          animation-iteration-count: 1;
+          /* linear | ease | ease-in | ease-out | ease-in-out */
+          animation-timing-function: 0% {
+            transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+                }
+                cubic-bezier(0.51,-0.02, 0, 1.53);
+                    }
+      </style>
+    <body>
+        <div>
+            <div id="animation_icon" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);opacity: 0%;">
+                <img src="https://cedalo.com/wp-content/uploads/2021/05/Raspi-PGB001.png" style=" display: block;margin-left: auto;margin-right: auto;width: 40%;margin-top: auto;margin-bottom: auto;" class="spin">
+            </div>
+            
+        </div>
+        <div id="main">
+            <div id="main_flex_box">
+                <div class="card">
+                    <h1>Welcome to RPi-GPIO WebRemote</h1>
+                    <p>Configure,Test and Debug you Raspberry pi with RPi-GPIO WebRemote </p>
+                </div>
+                <div class="card">
+                    <img src="https://img.icons8.com/fluency/96/000000/gears.png" style="float: right;"/>
+                    <h1>Configure</h1>
+                    <p>Enter a pin on your raspberry pi to edit.</p>
+                    <input type="number" max="40" min="1" id="Pin_Number">
+                    <button onclick="set_high()">Set HIGH</button>
+                    <button onclick="set_low()">Set LOW</button>
+
+                </div>
+            </div>
+            <div id="main_flex_box">
+                <div class="card">
+                    <img src="https://img.icons8.com/fluency/96/000000/get-help.png" style="float: right;"/>
+                    <h1>Need Help?</h1>
+                    <p>Join our discord and we will help here</p>
+                    <button><a href="https://discord.gg/rBrDnQxBsM">Join Server</a></button>
+                </div>
+                <div class="card">
+                    <img src="https://img.icons8.com/fluency/96/000000/github.png" style="float: right;"/>
+                    <h1>See a Bug</h1>
+                    <p>If you notice a bug in RPi-GPIO WebRemote you can report it in out github repository.</p>
+                </div>
+            </div>
+        <script defer async>
+            function set_high(){
+                var xhttp = new XMLHttpRequest();
+                signin_response = ""
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("info").innerHTML = this.responseText
+                    }
+                };
+                xhttp.open("GET", "set?pin="+document.getElementById("Pin_Number").value+"&mode=HIGH", true);
+                xhttp.send();
+            }
+            function set_low(){
+                var xhttp = new XMLHttpRequest();
+                signin_response = ""
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("info").innerHTML = this.responseText
+                    }
+                };
+                xhttp.open("GET", "set?pin="+document.getElementById("Pin_Number").value+"&mode=LOW", true);
+                xhttp.send();
+            }
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function opacity_to_100(id){
+                var opacity = 0
+                for (let i = 0; i < 25; i++) {
+                    document.getElementById(id).style.opacity = opacity+"%"
+                    opacity = opacity + 4
+                    await sleep(10)
+                } 
+            }
+            async function opacity_to_0(id){
+                var opacity = 100
+                for (let i = 0; i < 25; i++) {
+                    document.getElementById(id).style.opacity = opacity+"%"
+                    opacity = opacity - 4
+                    await sleep(10)
+                }
+            }
+            async function spin_animation(){
+                const current_rotation = 0;
+                const rotation_increment = 360;
+                var rotation = current_rotation;
+                for (let i = 0; i < 25; i++) {
+                    document.querySelector(".rotate").style.transform = "rotate("+rotation+"deg)"
+                    rotation = rotation + rotation_increment
+                    await sleep(10)
+                }
+
+            }
+    
+            async function start_animation(){
+                await sleep(300)
+                opacity_to_100("animation_icon")
+                await sleep(300)
+                opacity_to_0("animation_icon")
+                await sleep(500)
+                opacity_to_100("main")
+                document.getElementById("animation_icon").style.display = "none"
+                document.getElementById("main").style.display = "block"
+            }
+
+            async function start_animation_idk(){
+                await sleep(300)
+                opacity_to_100("animation_icon")
+                //await sleep(1000)
+                //opacity_to_0("animation_icon")
+
+                await sleep(1000)
+                spin_animation()
+                await sleep(500)
+                opacity_to_0("animation_icon")
+                document.getElementById("animation_icon").style.display = "none"
+                document.getElementById("main").style.display = "block"
+            }
+            start_animation()
+        </script>
+ 
+    </body>
+</html>
