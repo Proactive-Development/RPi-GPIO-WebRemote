@@ -108,29 +108,8 @@
             </div>
         <a href="https://github.com/Proactive-Development"><img src="https://raw.githubusercontent.com/Proactive-Development/RPi-GPIO-WebRemote/main/Banner.png" class="banner" width="300px"></a>
         <p class="icons8">Icons by <a href="https://icons8.com">Icons8</a></p>
+        <script src="/src/gpio"></script>
         <script defer async>
-            function set_high(){
-                var xhttp = new XMLHttpRequest();
-                signin_response = ""
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("info").innerHTML = this.responseText
-                    }
-                };
-                xhttp.open("GET", "set?pin="+document.getElementById("Pin_Number").value+"&mode=HIGH", true);
-                xhttp.send();
-            }
-            function set_low(){
-                var xhttp = new XMLHttpRequest();
-                signin_response = ""
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("info").innerHTML = this.responseText
-                    }
-                };
-                xhttp.open("GET", "set?pin="+document.getElementById("Pin_Number").value+"&mode=LOW", true);
-                xhttp.send();
-            }
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
