@@ -30,6 +30,6 @@ Using a web browser or http client you can use the `/set` page to set a gpio pin
 | Pin | Chose whitch pin to set|
 | Mode | Set the pin HIGH or LOW. (Must be typed high and low)|
 
-## Depandancies
+## Dependencies
 - JsonReg `pip install jsonreg`
 
