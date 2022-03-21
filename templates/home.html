@@ -52,6 +52,28 @@
             right: 0;
             margin-right: 10px;
         }
+        h1{
+            color: rgb(48, 48, 48);
+        }
+        button{
+            background-color: rgb(223, 223, 223);
+            border: none;
+            padding:2px;
+            border-radius: 5px;
+        }
+        button:hover{
+            background-color: rgb(138, 138, 138);
+            border: none;
+            padding:2px;
+            border-radius: 5px;
+        }
+        input{
+            border: none;
+            background-color: rgb(223, 223, 223);
+            border-radius: 5px;
+            padding:2px;
+            width: 90px;
+        }
     </style>
     <style>
         /* @keyframes spinning {
@@ -87,7 +109,7 @@
                     <img src="https://img.icons8.com/fluency/96/000000/gears.png" style="float: right;"/>
                     <h1>Configure</h1>
                     <p>Enter a pin on your raspberry pi to edit.</p>
-                    <input type="number" max="40" min="1" id="Pin_Number">
+                    <input type="number" max="40" min="1" id="Pin_Number" placeholder="Pin number">
                     <button onclick="set_high()">Set HIGH</button>
                     <button onclick="set_low()">Set LOW</button>
 
