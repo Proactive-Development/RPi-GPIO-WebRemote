@@ -19,4 +19,4 @@ def set():
 def gpio():
     return render_template("gpio.js")
 if __name__ == "__main__":
-    app.run(port=jsonreg.read("app_config/rpi-gpio-port.json")[0],debug=jsonreg.read("app_config/rpi-gpio-debug.json")[0])
+    app.run(port=jsonreg.read("app_config/rpi-gpio-port.json")[0],debug=jsonreg.read("app_config/rpi-gpio-debug.json")[0],host=jsonreg.read("app_config/rpi-gpio-host.json")[0])
