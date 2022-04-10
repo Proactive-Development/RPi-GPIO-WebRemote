@@ -1,0 +1,18 @@
+{
+    "name": "RPi-GPIO-WebRemote",
+    "description": "Control your Raspberry Pi's GPIO pins from a simple web app",
+    "version": "0.1.0",
+    "main_file": "flask_server.py",
+    "author": "Proactive Development",
+    "license": "none",
+    "url": "none",
+    "email": "none",
+    "languages": [
+        "python",
+        "javascript",
+        "html"
+    ],
+    "actions": {
+        "run": "python flask_server.py"
+    }
+}
